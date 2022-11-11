@@ -5,9 +5,17 @@ import { generateSession } from "./utils/utils.js";
 const app = express();
 const PORT = 8000;
 
-const sessionArray = [];
+const sessionArray = [
+  {
+    "adorable_fish": {
+      "text": [],
+      "file": []
+    }
+  }
+];
 
 app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
   return res.status(200).send({message: "Hello world!"});
@@ -22,15 +30,17 @@ app.get('/create', (req, res) => {
     }
   };
   sessionArray.push(newSession);
-  return res.status(201).send({message: 'Session created successfully!', session: newSession});
+  return res.status(201).send({message: 'Session created successfully!', sessionId, session: newSession});
 });
 
 app.post('/join', (req, res) => {
   const sessionId = req.body?.sessionId;
   try {
-    const clipSession = sessionArray.filter(session => session.sessionId === sessionId)[0];
+    const clipSession = sessionArray.filter(session => 
+      (Object.keys(session)[0] === sessionId)
+    );
     if (clipSession) {
-      return res.status(200).send({message: `Joined session ${sessionId}`, session: clipSession});
+      return res.status(200).send({message: `Joined session ${sessionId}`, sessionId, session: clipSession[0]});
     }
     return res.status(400).send({message: 'Session doesn\'t exist!'});
   } catch (error) {
