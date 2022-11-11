@@ -30,7 +30,7 @@ app.post('/join', (req, res) => {
   try {
     const clipSession = sessionArray.filter(session => session.sessionId === sessionId)[0];
     if (clipSession) {
-      return res.status(200).send({message: 'Session found!'}, clipSession);
+      return res.status(200).send({message: `Joined session ${sessionId}`, clipSession});
     }
     return res.status(400).send({message: 'Session doesn\'t exist!'});
   } catch (error) {
