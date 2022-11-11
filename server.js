@@ -22,7 +22,7 @@ app.get('/create', (req, res) => {
     }
   };
   sessionArray.push(newSession);
-  return res.status(201).send({message: 'Session created successfully', sessionId});
+  return res.status(201).send({message: 'Session created successfully!', session: newSession});
 });
 
 app.post('/join', (req, res) => {
@@ -30,7 +30,7 @@ app.post('/join', (req, res) => {
   try {
     const clipSession = sessionArray.filter(session => session.sessionId === sessionId)[0];
     if (clipSession) {
-      return res.status(200).send({message: `Joined session ${sessionId}`, clipSession});
+      return res.status(200).send({message: `Joined session ${sessionId}`, session: clipSession});
     }
     return res.status(400).send({message: 'Session doesn\'t exist!'});
   } catch (error) {
