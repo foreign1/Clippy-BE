@@ -49,6 +49,28 @@ app.post('/join', (req, res) => {
 
 });
 
+app.patch("/addItem", (req, res) => {
+  try {
+    const { sessionId, type, item } = req.body;
+    const session = sessionArray.filter(session => Object.keys(session)[0] === sessionId)[0];
+    session[sessionId][type].push(item);
+    return res.status(200).send({message: "Update successful."})
+  } catch (error) {
+    return res.status(400).send({message: "Patch operation failed", error})    
+  }
+});
+
+app.delete("/deleteItem", (req, res) => {
+  try {
+    const { sessionId, type, index } = req.body;
+    const session = sessionArray.filter(session => Object.keys(session)[0] === sessionId)[0];
+    session[sessionId][type].splice(index, 1);
+    return res.status(200).send({message: "Item deleted successfully."})
+  } catch (error) {
+    return res.status(400).send({message: "Delete operation failed", error})    
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`App is running on port:${PORT}`);
 })
