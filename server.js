@@ -35,12 +35,14 @@ app.get('/create', (req, res) => {
 
 app.post('/join', (req, res) => {
   const sessionId = req.body?.sessionId;
+  console.log(res.body)
   try {
     const clipSession = sessionArray.filter(session => 
       (Object.keys(session)[0] === sessionId)
-    );
+    )[0];
+    console.log(clipSession)
     if (clipSession) {
-      return res.status(200).send({message: `Joined session ${sessionId}`, sessionId, session: clipSession[0]});
+      return res.status(200).send({message: `Joined session ${sessionId}`, sessionId, session: clipSession});
     }
     return res.status(400).send({message: 'Session doesn\'t exist!'});
   } catch (error) {
