@@ -1,6 +1,15 @@
+<<<<<<< Updated upstream
 import express from "express";
 import cors from "cors";
 import { generateSession } from "./utils/utils.js";
+=======
+import express, { urlencoded } from "express";
+import http from "http";
+import dotenv from "dotenv";
+import { Server } from "socket.io";
+import router from "./routes/router.js";
+import socket from "./routes/socket-router.js";
+>>>>>>> Stashed changes
 
 const app = express();
 const PORT = 8000;
