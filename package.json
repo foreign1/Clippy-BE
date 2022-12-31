@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
+    "build": "npm build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
@@ -21,7 +22,10 @@
   "homepage": "https://github.com/foreign1/Clippy-BE#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "rurid": "^1.0.0",
+    "socket.io": "^4.5.4"
   }
 }
