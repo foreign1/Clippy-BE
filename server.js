@@ -4,7 +4,7 @@ import http from "http";
 import dotenv from "dotenv";
 import { Server } from "socket.io";
 import router from "./routes/router.js";
-import socket from "./routes/socket-router.js";
+import socket from "./routes/socket.router.js";
 
 process.env.NODE_ENV !== "production" && dotenv.config();
 

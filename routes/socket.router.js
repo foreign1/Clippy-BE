@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { setChamberName, joinChamber, addItem } from "../controllers/socket-controller.js";
+import { setChamberName, joinChamber, addChamberItem } from "../controllers/socket.controller.js";
 
-function socketRouter(io) {
+const socketRouter = (io) => {
   const router = Router();
   
   io.on("connection", (socket) => {
@@ -13,7 +13,7 @@ function socketRouter(io) {
 
     socket.on('join-chamber', (payload) => joinChamber(payload, socket, io));
 
-    socket.on('add-item', (payload) => addItem(payload, socket));
+    socket.on('add-item', (payload) => addChamberItem(payload, socket));
   });
 
   return router; 
