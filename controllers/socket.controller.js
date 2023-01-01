@@ -26,8 +26,7 @@ const joinChamber = (payload, socket, io) => {
         status: "success", 
         message: "Joined chamber successfully!"
       }),
-      io.to(socket.id).emit("history", chamber.data),
-      console.log("Joined successfully!")
+      io.to(socket.id).emit("history", chamber.data)
     )
     : io.emit("join-status", {
       status: "failed", 
@@ -38,10 +37,8 @@ const joinChamber = (payload, socket, io) => {
 const addChamberItem = (payload, socket) => {
   const chamberName = payload.chamberName;
   const item = payload.newItem;
-  const chamber = getChamber(chamberName);
-
-  chamber ? addItem(chamberName, item) :
-    console.log("Item couldn't be added at this time!");
+  
+  addItem(chamberName, item);
 
   socket.broadcast.emit('chamber-data-updated', item);
 }
