@@ -13,7 +13,7 @@ const setChamberName = (chamberData, socket) => {
 
 const joinChamber = (payload, socket, io) => {
   const chamberName = payload.chamberName;
-  const screenName =payload.screenName;
+  const screenName = payload.screenName;
   const chamber = getChamber(chamberName);
   
   chamber ?
