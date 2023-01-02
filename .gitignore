@@ -1,2 +1,5 @@
 node_modules/
 request.rest
+.env
+Note.txt
+utils/
