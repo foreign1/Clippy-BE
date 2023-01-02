@@ -11,7 +11,7 @@ const getChamber = (chamberName) => {
 const addItem = (chamberName, item) => {
   const chamber = getChamber(chamberName);
   chamber ? chamber.data.push(item) : 
-    console.log("Couldn't add item to chamber as chamber with supplied ID does not exist!");
+    console.error("Couldn't add item to chamber as chamber with supplied ID does not exist!");
 }
 
 export { createChamber, getChamber, addItem }
