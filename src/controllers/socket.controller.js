@@ -1,7 +1,13 @@
-import { createChamber, getChamber, addItem } from "../models/models.js"
+import {
+  createChamber,
+  getChamber,
+  addItem,
+  getItem,
+  deleteItem 
+} from "../models/models.js"
 
 const setChamberName = (chamberData, socket) => {
-  let chamber = {
+  const chamber = {
     id: socket.id,
     ownerScreenName: chamberData.screenName,
     chamberName: chamberData.chamberName,
@@ -43,4 +49,13 @@ const addChamberItem = (payload, socket) => {
   socket.broadcast.emit('chamber-data-updated', item);
 }
 
-export { setChamberName, joinChamber, addChamberItem }
+const deleteChamberItem = (payload, socket) => {
+  const chamberName = payload.chamberName;
+  const itemId = payload.itemId;
+  const user = payload.screenName;
+
+  getItem(chamberName, itemId).ownerScreenName === user && 
+  deleteItem(chamberName, itemId);
+}
+
+export { setChamberName, joinChamber, addChamberItem, deleteChamberItem };
